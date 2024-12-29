@@ -1,0 +1,47 @@
+.controls {
+    margin: 1em 0;
+  }
+  
+  .controls button {
+    margin-right: 10px;
+  }
+  
+  .remaining {
+    margin: 1em 0;
+  }
+  
+  .dealt-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10;
+  }
+  
+  mat-card {
+    width: 80px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .card {
+    width: 120px;
+    text-align: center;
+  }
+
+  .shuffle-text {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+  }
