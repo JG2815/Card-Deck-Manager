@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import { Firestore, collection, doc, setDoc, getDoc, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './firebase-config';
 
 // This is the card interface (the rank of the card and the suit of the card)
@@ -18,11 +18,14 @@ private deck: Card[] = [];
 private dealtCards: Card[] = [];
 private deskCollection = collection(db, 'decks');
 private deckDoc = doc(this.deskCollection, 'currentDeck');
+private historyCollection = collection(db, 'dealtCardsHistory');
+
   
 constructor() { 
   this.resetDeck(); // This will initialize the deck
 }
 
+ // Reset the deck to its initial state
 async resetDeck() {
   this.deck = [];
   this.dealtCards = [];
@@ -48,6 +51,7 @@ async dealCards(count: number): Promise<Card[]> {
   const dealt = this.deck.splice(0, count);
   this.dealtCards.push(...dealt);
   await this.saveDeckState();
+  await this.saveDealtCardsHistory(dealt);
   return dealt;
 }
 
@@ -84,6 +88,29 @@ getRemainingDeck() {
       }
     } catch (e) {
       console.error('Error getting deck state: ', e);
+    }
+  }
+
+ // Save dealt cards history to Firestore
+ private async saveDealtCardsHistory(dealtCards: Card[]) {
+  try {
+    await addDoc(this.historyCollection, { dealtCards, timestamp: new Date() });
+    console.log('Dealt cards history saved successfully');
+  } catch (e) {
+    console.error('Error saving dealt cards history: ', e);
+  }
+}
+
+
+// Retrieve dealt cards history from Firestore
+async getDealtCardsHistory() {
+  try {
+    const querySnapshot = await getDocs(this.historyCollection);
+    const history = querySnapshot.docs.map(doc => doc.data());
+    return history;
+  } catch (e) {
+    console.error('Error getting dealt cards history: ', e);
+    return [];
     }
   }
 }
