@@ -1,0 +1,64 @@
+/* Styles for controls */
+.controls {
+    margin: 1em 0;
+  }
+  
+  /* Styles for the remaining cards section */
+  .controls button {
+    margin-right: 10px;
+  }
+  
+  /* Styles for the remaining cards section */
+  .remaining {
+    margin: 1em 0;
+  }
+  
+  /* Styles for the dealt cards section */
+  .dealt-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10;
+  }
+  
+  /* Styles for individual cards */
+  mat-card {
+    width: 80px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  
+  /* Styles for action buttons */
+  .actions {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  /* Styles for individual card content */
+  .card {
+    width: 120px;
+    text-align: center;
+  }
+
+  /* Styles for the shuffle text */
+  .shuffle-text {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+  }
+  @media (max-width: 600px) {
+    .controls {
+      flex-direction: column;
+      align-items: center;
+    }
+    .dealt-cards mat-card {
+      width: 100%;
+    }
+  }

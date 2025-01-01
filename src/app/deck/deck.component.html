@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <span>Card Deck Manager</span>
+</mat-toolbar>
+
+<div class ="controls">
+  <button mat-raised-button color="primary" (click)="shuffleDeck()">Shuffle Deck</button>
+  <button mat-raised-button color="primary" (click)="resetDeck()">Reset Deck</button>
+  <button mat-raised-button color="primary" (click)="dealCards(dealcount)">Deal Cards</button>
+  <input
+    type="number"
+    placeholder="Number of Cards to Deal"
+    [(ngModel)]="dealcount"
+    min = "1"
+    max = "remainingDeckSize"
+    />
+</div>
+
+<div class="remaining">
+    <p>Remaining Cards: {{remainingDeckSize}}</p>
+</div>
+
+<div class = "dealt-cards">
+    <mat-card *ngFor="let card of dealtCards" [@cardAnimation]>
+        <mat-card-content>
+            {{card.rank}} of {{card.suit}}
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="isShuffling" [@shuffleAnimation] class = "shuffle-text">
+    <p>Shuffling...</p>
+  </div>
+
+  
+  <button mat-raised-button color="primary" (click)="openHistoryDialog()">View Dealt Cards History</button>
+  

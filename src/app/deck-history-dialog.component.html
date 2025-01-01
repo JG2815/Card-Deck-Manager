@@ -1,0 +1,19 @@
+<!-- Title of the dialog -->
+<h1 mat-dialog-title>Dealt Cards History</h1>
+
+<!-- Dialog content -->
+<div mat-dialog-content>
+  <!-- List of dealt cards history entries -->
+  <ul>
+    <!-- Loop through each history entry -->
+    <li *ngFor="let entry of data.history">
+      <!-- Display the timestamp of the entry -->
+      <strong>{{ entry.timestamp.toDate() | date: 'short' }}</strong>
+      <!-- Nested list of dealt cards for each entry -->
+      <ul>
+        <!-- Loop through each card in the dealt cards -->
+        <li *ngFor="let card of entry.dealtCards">{{ card.rank }} of {{ card.suit }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>
