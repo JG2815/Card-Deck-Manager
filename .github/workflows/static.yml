@@ -31,32 +31,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
-
-      - name: Print Node.js version
-        run: node -v
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Print Angular CLI version
-        run: npx ng version
-
-      - name: Build the Angular app
-        run: npm run build --prod -- --base-href /Card-Deck-Manager/
-
-      - name: List build output
-        run: ls -la dist/Card-Deck-Manager
-
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/Card-Deck-Manager'
-
+          # Upload entire repository
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
